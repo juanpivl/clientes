@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1067224466623",
+    "project_id": "nutri-48964",
+    "storage_bucket": "nutri-48964.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067224466623:android:b04c787fbb1fd81953720a",
+        "android_client_info": {
+          "package_name": "com.example.pacientes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067224466623-bdfb09kio5uj89g0cenpnfjli2jk036n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvG6rl0RwuXtAwR5kuOrctDieKBQK4DDU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067224466623-bdfb09kio5uj89g0cenpnfjli2jk036n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
