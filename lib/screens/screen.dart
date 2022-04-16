@@ -6,3 +6,5 @@ export 'package:pacientes/screens/authenticate/sign_in.dart';
 
 export 'package:pacientes/screens/menu_screen.dart';
 
+export 'package:pacientes/screens/home/clientes_list.dart';
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pacientes/services/auth.dart';
+import 'package:pacientes/widgets/widgets.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   //text field state
   String email = '';
@@ -20,7 +22,7 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     double _screenWidth = MediaQuery.of(context).size.width,
         _screenHeight = MediaQuery.of(context).size.height;
-    return SingleChildScrollView(
+    return loading ? Loading() : SingleChildScrollView(
         child: Container(
       child: Column(children: [
         const Padding(
@@ -105,10 +107,16 @@ class _SignInState extends State<SignIn> {
               child: Text('Ingresar'),
               onPressed: ()async {
                   if(_formKey.currentState!.validate()){
+                    setState(() {
+                      loading = true;
+                    
+                    });
                     dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                     if(result == null){
                       setState(() {
+
                         error = 'Credenciales incorrectas';
+                        loading =false;
                       });
                     }
                   }

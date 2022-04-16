@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pacientes/services/services.dart';
+import 'package:pacientes/widgets/widgets.dart';
 
 
 class Register extends StatefulWidget {
@@ -11,6 +12,7 @@ class _RegisterState extends State<Register> {
   
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   //text field state
   String email = '';
@@ -21,7 +23,7 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     double _screenWidth = MediaQuery.of(context).size.width,
         _screenHeight = MediaQuery.of(context).size.height;
-    return SingleChildScrollView(
+    return loading? Loading() :SingleChildScrollView(
         child: Container(
       child: Column(children: [
         const Padding(
@@ -106,9 +108,17 @@ class _RegisterState extends State<Register> {
               child: Text('Registrar'),
               onPressed: () async {
                   if(_formKey.currentState!.validate()){
+                    setState(() {
+                      loading = true;
+                    
+                    });
                     dynamic result = await _auth.registerWithEmail(email, password);
                     if(result == null){
-                      setState(() => error = 'Ingresar un email valido');
+                      setState(() { 
+                        
+                        error = 'Ingresar un email valido';
+                        loading = false;
+                        });
                     }
                   }
               }, 
