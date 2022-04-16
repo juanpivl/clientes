@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pacientes/widgets/widgets.dart';
+import 'package:pacientes/services/services.dart';
 
 
 class Register extends StatefulWidget {
@@ -8,14 +8,14 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  @override
-  final TextEditingController _emailEditingController = TextEditingController();
-  final TextEditingController _passwordEditingController =
-      TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
+  //text field state
+  String email = '';
+  String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -24,76 +24,101 @@ class _RegisterState extends State<Register> {
     return SingleChildScrollView(
         child: Container(
       child: Column(children: [
-        
         const Padding(
           padding: EdgeInsets.all(
-            8.0,
+            15.0,
           ),
-          child:
-              const Text("Ingresa tu cuenta", style: TextStyle(color: Colors.white)),
+          child: Text("Registra tu cuenta",
+              style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
         Form(
           key: _formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
-            children: [
-              CustomTextField(
-                controller: _emailEditingController,
-                data: Icons.mail,
-                hintText: "Email",
-                isObsecure: false, validator: (value) {  },
-              ),
-              CustomTextField(
-                controller: _passwordEditingController,
-                data: Icons.password,
-                hintText: "Contraseña",
-                isObsecure: true, validator: (value) {  },
-              ),
-            ],
-          ),
-        ),
-        RaisedButton(
-          onPressed: () async{
-          
-
-            // User? user = await loginUsingEmailPassword(email: _emailEditingController.text, password: _passwordEditingController.text, context: context);
-            //     if(user != null){
-            //       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MenuScreen() ));
-            //       print(user.uid);
-            //     }
-                  
-                  
-          },
-          color: Colors.green,
-          child: const Text(
-            "Entrar",
-            style: const TextStyle(color: Colors.white),
-          ),
-        ),
-
-        RaisedButton(
-          onPressed: () async{
             
+            children: [
+            const SizedBox(height: 30.0),
+            Container(
+              width: 300,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(
+                    Icons.email,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  focusColor: Theme.of(context).primaryColor,
+                  hintText: "Correo",
+                  
+                ),
+                autocorrect: false,
+                validator: (val) {
+                String pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp = new RegExp(pattern);
 
-          },
-          color: Colors.green,
-          child: const Text(
-            "Anonymus",
-            // ignore: unnecessary_const
-            style: const TextStyle(color: Colors.white),
+                return regExp.hasMatch(val ?? '')
+                    ? null
+                    : 'El correo no es correcto';
+              },
+                onChanged: (val) {
+                  setState(() {
+                    email =val;
+                  });
+                },
+              ),
+            ),
+            const SizedBox(height: 30.0),
+            Container(
+              width: 300,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(
+                    Icons.password,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  focusColor: Theme.of(context).primaryColor,
+                  hintText: "Contraseña",
+                ),
+                autocorrect: false,
+                obscureText: true,
+                validator: (val) {
+                return (val != null && val.length >= 6)
+                    ? null
+                    : 'La contraseña debe ser de 6 caracteres';
+              },
+                onChanged: (val) {
+                  setState(() {
+                    
+                    password =val;
+                  
+                  });
+                },
+              ),
+            ),
+            const SizedBox(height: 30.0),
+            ElevatedButton(
+              child: Text('Registrar'),
+              onPressed: () async {
+                  if(_formKey.currentState!.validate()){
+                    dynamic result = await _auth.registerWithEmail(email, password);
+                    if(result == null){
+                      setState(() => error = 'Ingresar un email valido');
+                    }
+                  }
+              }, 
+               ),
+            const SizedBox(height: 20.0),
+            
+          ],
           ),
         ),
-         
-        const SizedBox(height: 30.0),
-        Container(height: 4.0, width: _screenWidth * 0.8, color: Colors.white),
-        const SizedBox(height: 10.0),
-        FlatButton.icon(
-          onPressed: () => (){},
-          icon: (const Icon(Icons.nature_people, color: Colors.white)),
-          label: const Text(
-            "Admin",
-            style: TextStyle(color: Colors.white),
-          ),
-        )
+        Center(child: Text(error,style: TextStyle(color: Colors.red,fontSize: 14),))
       ]),
     ));
   }
