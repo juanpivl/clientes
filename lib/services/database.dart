@@ -37,6 +37,19 @@ class DatabaseService {
     }).toList();
   
   }
+
+  //userData from snapshot
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+      uid: uid,
+      name: snapshot['name'],
+      peso: snapshot['peso'],
+      Altura: snapshot['Altura'] ,
+      edad: snapshot['edad'],
+      cita: snapshot['cita'],
+      celular: snapshot['celular'],
+    );
+  }
     
   
 
@@ -46,6 +59,10 @@ class DatabaseService {
     .map(_clientesListFromSnapshot);
   }
 
-  //
+  //get user doc stream
+  Stream<UserData>get userData{
+    return clientesCollection.doc(uid).snapshots()
+    .map(_userDataFromSnapshot);
+  }
 
 }

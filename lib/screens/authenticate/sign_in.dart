@@ -159,7 +159,6 @@ class _anonimus extends StatelessWidget {
           print("error ");
         } else {
           print("entro");
-          print(result.uid);
         }
       },
       icon: (const Icon(Icons.nature_people, color: Colors.white)),

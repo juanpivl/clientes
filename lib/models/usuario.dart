@@ -1,12 +1,12 @@
 
 
 class Usuario {
-  final String? name;
-  final String? peso;
-  final String? Altura;
-  final String? edad;
-  final String? cita;
-  final String? celular;
+  final String name;
+  final String peso;
+  final String Altura;
+  final String edad;
+  final String cita;
+  final String celular;
 
-  Usuario({this.name, this.peso, this.Altura, this.edad, this.cita, this.celular});
+  Usuario({ required this.name,required this.peso,required this.Altura,required  this.edad,required  this.cita,required  this.celular});
 }

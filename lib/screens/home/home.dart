@@ -12,67 +12,29 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: StreamProvider<List<Usuario?>>.value(
-        value: DatabaseService().clientes,
-        initialData: [   ],
-        child: Scaffold(
-          body: Stack(
-            children: [
-              Background(),
-              ClientesList()
-              // ListView(
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.all(20),
-              //       child: Container(
-              //         margin: const EdgeInsets.only(top: 10),
-              //         decoration: BoxDecoration(
-              //             color: const Color.fromRGBO(62, 66, 107, 0.7),
-              //             borderRadius: BorderRadius.circular(15)),
-              //         height: 500,
-              //         padding: const EdgeInsets.symmetric(vertical: 15),
-              //         child: _info(context),
-              //       ),
-              //     ),
-              //     const SizedBox(height: 80),
-              //   ],
-              // )
-            ],
+      child: Stack(
+        children: [
+          Background(),
+          Container(
+            margin: EdgeInsets.fromLTRB(5, 5, 10, 10),
+             child: FloatingActionButton(
+              backgroundColor: Colors.blueAccent,
+              child: Icon(Icons.exit_to_app),
+              onPressed: () {
+                _auth.signOut();
+              },),
           ),
-        ),
+          
+          Container(
+            margin: EdgeInsets.fromLTRB(20, 60, 20, 0),
+            child: StreamProvider<List<Usuario?>>.value(
+              value: DatabaseService().clientes,
+              initialData: [null],
+              child: ClientesList(),
+            ),
+          ),
+        ],
       ),
     );
   }
-
-  // Column _info(BuildContext context) {
-  //   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-  //     Stack(
-  //       children: [
-  //         Positioned(
-  //           top: 0,
-  //           left: 5,
-  //           child: IconButton(
-  //             icon: const Icon(Icons.exit_to_app_outlined, color: Colors.white),
-  //             onPressed: () async {
-  //               await _auth.signOut();
-  //             },
-  //           ),
-  //         ),
-  //         Center(
-  //           child: Container(
-  //             child: const CircleAvatar(
-  //               radius: 70,
-  //               backgroundColor: Colors.transparent,
-  //               backgroundImage: const AssetImage('assets/logo.png'),
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //     Container(
-  //       height: 315,
-  //       child: Text('das'),
-  //     ),
-  //   ]);
-  // }
 }
