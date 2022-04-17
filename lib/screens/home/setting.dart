@@ -33,90 +33,99 @@ class _SettingsState extends State<Settings> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'Actualiza tu perfil',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Nombre',
                           labelStyle: TextStyle(color: Colors.white)),
-                      initialValue: userData?.name,
-                      validator: (input) =>
-                          input!.isEmpty ? 'Por favor ingrese su nombre' : null,
-                          onChanged: (input) =>
-                          setState(() => _currentName = input),
+                          initialValue: userData?.name,
+                          onChanged: (val) {
+                          setState(() {
+                    
+                              _currentName =val;
+                  
+                            });
+                },
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Celular',
                           labelStyle: TextStyle(color: Colors.white)),
-                      initialValue: userData?.celular,
-                      validator: (input) => input!.isEmpty
-                          ? 'Por favor ingrese su celular'
-                          : null,
-                      onChanged: (input) =>
-                          setState(() => _currentCelular = input),
+                      initialValue: userData?.celular ,
+                      onChanged: (val) {
+                        setState(() {
+                          _currentCelular = val;
+                        });
+                      },
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Edad',
-                          labelStyle: TextStyle(color: Colors.white)),
+                          labelStyle: const TextStyle(color: Colors.white)),
                       initialValue: userData?.edad,
-                      validator: (input) =>
-                          input!.isEmpty ? 'Por favor ingrese su edad' : null,
-                      onChanged: (input) =>
-                          setState(() => _currentEdad = input),
+                      onChanged: (val) {
+                        setState(() {
+                          _currentEdad = val;
+                        });
+                      },
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Peso',
                           labelStyle: TextStyle(color: Colors.white)),
                       initialValue: userData?.peso,
-                      validator: (input) =>
-                          input!.isEmpty ? 'Por favor ingrese su peso' : null,
-                      onChanged: (input) =>
-                          setState(() => _currentPeso = input),
+                      onChanged: (val) {
+                        setState(() {
+                          _currentPeso = val;
+                        });
+                      },
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Altura',
                           labelStyle: TextStyle(color: Colors.white)),
                       initialValue: userData?.Altura,
-                      validator: (input) =>
-                          input!.isEmpty ? 'Por favor ingrese su altura' : null,
-                      onChanged: (input) =>
-                          setState(() => _currentAltura = input),
+                      onChanged: (val) {
+                        setState(() {
+                          _currentAltura = val;
+                        });
+                      },
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Proxima Cita',
-                          labelStyle: TextStyle(color: Colors.white)),
+                          labelStyle: const TextStyle(color: Colors.white)),
                       initialValue: userData?.cita,
-                      validator: (input) => input!.isEmpty
-                          ? 'Por favor ingrese su proxima cita'
-                          : null,
-                      onChanged: (input) =>
-                          setState(() => _currentCita = input),
+                      
+                      onChanged: (val) {
+                        setState(() {
+                          _currentCita = val;
+                        });
+                      },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    RaisedButton(
-                      color: Colors.white,
-                      child: Text('Guardar'),
-                      onPressed: () async {
+                    ElevatedButton(
+                      child: const Text('Guardar'),
+                      onPressed: ()  {
                         if(_formKey.currentState!.validate()){
-                          await DatabaseService(uid:user?.uid).updateUserData(
+                           DatabaseService(uid:user?.uid).updateUserData(
                             _currentName ?? userData!.name,
-                            _currentCelular ?? userData!.celular,
-                            _currentEdad ?? userData!.edad,
                             _currentPeso ?? userData!.peso,
                             _currentAltura ?? userData!.Altura,
+                            
+                            _currentEdad ?? userData!.edad,
                             _currentCita ?? userData!.cita,
+                            _currentCelular ?? userData!.celular,
+                            
+                            
                           
                           );
                           Navigator.pop(context);

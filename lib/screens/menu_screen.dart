@@ -13,6 +13,8 @@ class _MenuScreenState extends State<MenuScreen> {
   int pageindex = 0;
 
  final Home _home = Home();
+ final Perfil _perfil = Perfil();
+ final Comidas _comidas = Comidas();
 
   Widget _showPage = Home();
 
@@ -22,10 +24,10 @@ class _MenuScreenState extends State<MenuScreen> {
         return _home ;
         
       case 1:
-        return _home ;
+        return _comidas;
         
       case 2:
-        return _home ;
+        return _perfil ;
           
       
          

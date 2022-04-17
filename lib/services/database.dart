@@ -26,12 +26,12 @@ class DatabaseService {
   List<Usuario?> _clientesListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((document) {
       return Usuario(
-        name: document.get('name') ?? '',
-        peso: document.get('peso') ?? '',
-        Altura: document.get('Altura') ?? '',
-        edad: document.get('edad') ?? '',
-        cita: document.get('cita') ?? '',
-        celular: document.get('celular') ?? '',
+        name: document.get('name') ,
+        peso: document.get('peso') ,
+        Altura: document.get('Altura') ,
+        edad: document.get('edad') ,
+        cita: document.get('cita') ,
+        celular: document.get('celular') ,
 
       );
     }).toList();
