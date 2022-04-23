@@ -1,14 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pacientes/models/models.dart';
-import 'package:pacientes/screens/screen.dart';
 
 class DatabaseService {
   final String? uid;
   DatabaseService({this.uid});
 
-  //collection reference
+  //collection reference usuarios
   final CollectionReference clientesCollection =
       FirebaseFirestore.instance.collection('clientes');
+      
+
+ 
 
   Future updateUserData(String name, String peso, String Altura, String edad,
       String cita, String celular) async {
@@ -64,5 +66,11 @@ class DatabaseService {
     return clientesCollection.doc(uid).snapshots()
     .map(_userDataFromSnapshot);
   }
+
+//*********************************************************** */
+  
+
+ 
+  
 
 }

@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
             color: Colors.blueAccent,
             icon: Icons.fastfood,
             text: 'Lunes',
-            nav: 'desayuno',
+            nav: 'perfil',
           ),
           _SingleCard(
             color: Colors.purpleAccent,

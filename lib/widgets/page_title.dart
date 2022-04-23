@@ -24,9 +24,9 @@ class PageTitle extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children:  [
           SizedBox( height: 30 ),
-          Text(title, style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white )),
+          Text(title, style: TextStyle( fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white )),
           SizedBox( height: 10 ),
-          Text(text, style: TextStyle( fontSize: 16, color: Colors.white )),
+          Text(text, style: TextStyle( fontSize: 16, color: Colors.black )),
         ],
       );
   }

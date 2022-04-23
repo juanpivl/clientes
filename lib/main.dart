@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pacientes/models/models.dart';
+import 'package:pacientes/screens/screen.dart';
 import 'package:pacientes/screens/wrapper.dart';
 import 'package:pacientes/services/services.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +27,12 @@ class MyApp extends StatelessWidget {
           
           primarySwatch: Colors.green,
         ),
-        home: Wrapper(),
+        
+        initialRoute: 'Wrapper',
+        routes: {
+          'Wrapper': (context) => Wrapper(),
+          'settings': (context) => Settings(),
+        },
       ),
     );
   }

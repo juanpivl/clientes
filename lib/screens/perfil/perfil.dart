@@ -15,80 +15,82 @@ class _PerfilState extends State<Perfil> {
   Widget build(BuildContext context) {
     final AuthService _auth = AuthService();
     final user = Provider.of<Clientes?>(context);
-    return StreamBuilder<UserData>(
-      stream: DatabaseService(uid: user?.uid).userData,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          UserData? userData = snapshot.data;
-          return Scaffold(
-            body: Stack(
-              children: [
-                Background(),
-                ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                            color: const Color.fromRGBO(62, 66, 107, 0.7),
-                            borderRadius: BorderRadius.circular(15)),
-                        height: 500,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Stack(
-                                children: [
-                                  Positioned(
-                                    top: 0,
-                                    left: 5,
-                                    child: IconButton(
-                                      icon: const Icon(
-                                          Icons.exit_to_app_outlined,
-                                          color: Colors.white),
-                                      onPressed: () {
-                                        _auth.signOut();
-                                      },
-                                    ),
-                                  ),
-                                  Positioned(
+    return Material(
+      child: StreamBuilder<UserData>(
+        stream: DatabaseService(uid: user?.uid).userData,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            UserData? userData = snapshot.data;
+            return Scaffold(
+              body: Stack(
+                children: [
+                  Background(),
+                  ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 30),
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(62, 66, 107, 0.7),
+                              borderRadius: BorderRadius.circular(15)),
+                          height: 600,
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Stack(
+                                  children: [
+                                    Positioned(
                                       top: 0,
-                                      right: 5,
+                                      left: 5,
                                       child: IconButton(
-                                        onPressed: () {
-                                          _showSettingPanel(context, userData);
-                                        },
-                                        icon: const Icon(Icons.edit_outlined,
+                                        icon: const Icon(
+                                            Icons.exit_to_app_outlined,
                                             color: Colors.white),
-                                      )),
-                                  Center(
-                                    child: Container(
-                                      child: const CircleAvatar(
-                                        radius: 70,
-                                        backgroundColor: Colors.transparent,
-                                        backgroundImage:
-                                            const AssetImage('assets/logo.png'),
+                                        onPressed: () {
+                                          _auth.signOut();
+                                        },
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              _perfilBody(userData),
-
-                              _Informacion(userData),
-                            ]),
+                                    Positioned(
+                                        top: 0,
+                                        right: 5,
+                                        child: IconButton(
+                                          onPressed: () {
+                                            Navigator.pushNamed(context, 'settings');
+                                          },
+                                          icon: const Icon(Icons.edit_outlined,
+                                              color: Colors.white),
+                                        )),
+                                    Center(
+                                      child: Container(
+                                        child: const CircleAvatar(
+                                          radius: 70,
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage:
+                                              const AssetImage('assets/logo.png'),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                _perfilBody(userData),
+    
+                                _Informacion(userData),
+                              ]),
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          );
-        } else {
-          return Loading();
-        }
-      },
+                    ],
+                  )
+                ],
+              ),
+            );
+          } else {
+            return Loading();
+          }
+        },
+      ),
     );
   }
 
@@ -115,18 +117,7 @@ class _PerfilState extends State<Perfil> {
         ));
   }
 
-  void _showSettingPanel(clientes, index) {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-
-            color: Colors.green,
-            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-            child: Settings(),
-          );
-        });
-  }
+  
 
   _Informacion(UserData? userData) {
     return Container(
@@ -137,3 +128,5 @@ class _PerfilState extends State<Perfil> {
     );
   }
 }
+
+
