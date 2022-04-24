@@ -18,3 +18,21 @@ export 'package:pacientes/screens/comidas/comidas.dart';
 
 
 
+//dias
+export 'package:pacientes/screens/comidas/lunes.dart';
+export 'package:pacientes/screens/comidas/martes.dart';
+export 'package:pacientes/screens/comidas/miercoles.dart';
+export 'package:pacientes/screens/comidas/jueves.dart';
+export 'package:pacientes/screens/comidas/viernes.dart';
+export 'package:pacientes/screens/comidas/sabado.dart';
+export 'package:pacientes/screens/comidas/domingo.dart';
+
+
+
+
+
+
+
+
+
+

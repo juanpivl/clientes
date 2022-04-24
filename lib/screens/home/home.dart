@@ -24,8 +24,8 @@ class _HomeState extends State<Home> {
             ListView(children: [
               PageTitle(title: 'Bienvenidos', text: 'Nutricion para todos'),
               SizedBox(height: 20.0),
-              _VerticalDietas(),
-            
+              CardContainer(child: _buildCheckboxListTile('today', true,),),
+              
               SizedBox(height: 20.0),
               CardContainer(
                 child: Image.network(
@@ -39,6 +39,13 @@ class _HomeState extends State<Home> {
     );
   }
 
+  CheckboxListTile _buildCheckboxListTile(String title, bool value,) {
+    return CheckboxListTile(
+      title: Text(title),
+      value: value,
+      onChanged: null,
+    );
+  }
   
 
   SingleChildScrollView _VerticalDietas() {

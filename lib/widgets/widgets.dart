@@ -9,3 +9,5 @@ export 'package:pacientes/widgets/page_title.dart';
 
 export 'package:pacientes/widgets/card_container.dart';
 
+export 'package:pacientes/widgets/singlecard.dart';
+

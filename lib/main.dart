@@ -32,6 +32,13 @@ class MyApp extends StatelessWidget {
         routes: {
           'Wrapper': (context) => Wrapper(),
           'settings': (context) => Settings(),
+          'lunes': (context) => Lunes(),
+          'martes': (context) => Martes(),
+          'miercoles': (context) => Miercoles(),
+          'jueves': (context) => Jueves(),
+          'viernes': (context) => Viernes(),
+          'sabado': (context) => Sabado(),
+          'domingo': (context) => Domingo(),
         },
       ),
     );
