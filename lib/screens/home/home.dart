@@ -59,22 +59,22 @@ class _dependeDiaState extends State<dependeDia> {
     DateTime date = DateTime.now();
 
     if (date.weekday == 7) {
-      return SingleCard(dia: 'Domingo', nav: 'domingo');
+      return SingleCard(dia: 'Domingo', nav: 'domingo',foto: 'assets/fondo.jpg',);
     } else {
       if (date.weekday == 6) {
-        return SingleCard(dia: 'Sabado', nav: 'sabado');
+        return SingleCard(dia: 'Sabado', nav: 'sabado',foto: 'assets/fondo.1.jpg',);
       } else if (date.weekday == 5) {
-        return SingleCard(dia: 'Viernes', nav: 'viernes');
+        return SingleCard(dia: 'Viernes', nav: 'viernes',foto: 'assets/fondo.2.jpg',);
       } else if (date.weekday == 4) {
-        return SingleCard(dia: 'Jueves', nav: 'jueves');
+        return SingleCard(dia: 'Jueves', nav: 'jueves',foto: 'assets/fondo.3.jpg',);
       } else if (date.weekday == 3) {
-        return SingleCard(dia: 'Miercoles', nav: 'miercoles');
+        return SingleCard(dia: 'Miercoles', nav: 'miercoles',foto: 'assets/fondo.4.jpg',);
       } else if (date.weekday == 2) {
-        return SingleCard(dia: 'Martes', nav: 'martes');
+        return SingleCard(dia: 'Martes', nav: 'martes',foto: 'assets/fondo.5.jpg',);
       } else if (date.weekday == 1) {
-        return SingleCard(dia: 'Lunes', nav: 'lunes');
+        return SingleCard(dia: 'Lunes', nav: 'lunes',foto: 'assets/fondo.6.jpg',);
       } else {
-        return SingleCard(dia: 'Ni puta idea que dia es', nav: 'domingo');
+        return SingleCard(dia: 'Ni puta idea que dia es', nav: 'domingo',foto: 'assets/fondo.jpg',);
       }
     }
   }

@@ -6,9 +6,10 @@ import 'package:pacientes/widgets/widgets.dart';
 class  SingleCard extends StatelessWidget {
   final colo = Colores();
   final String dia;
-  final nav;
+  final String nav;
+  final String foto;
 
- SingleCard({Key? key, required this.dia, required this.nav}) : super(key: key);
+ SingleCard({Key? key, required this.dia, required this.nav,required this.foto}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +26,8 @@ class  SingleCard extends StatelessWidget {
         //TODO: cambiar a imagen
           color: Colors.white,
           image: DecorationImage(
-            image: AssetImage('assets/fondo.jpg'),
+            image: AssetImage(foto),
+            //image: AssetImage('assets/fondo.jpg'),
             fit: BoxFit.cover,
             opacity: .66,
           ) ,
