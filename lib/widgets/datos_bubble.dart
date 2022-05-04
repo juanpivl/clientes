@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pacientes/widgets/widgets.dart';
 
 class DatosBubble extends StatelessWidget {
-  const DatosBubble({Key? key, required this.text,required this.dato}) : super(key: key);
+ DatosBubble({Key? key, required this.text,required this.dato}) : super(key: key);
 
   final String text;
   final String dato;
+  final colo = Colores();
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +24,14 @@ class DatosBubble extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: colo.letrasC),
               ),
               Text(
                 text,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: colo.letrasC),
               ),
             ],
           
@@ -41,8 +43,9 @@ class DatosBubble extends StatelessWidget {
 }
 
 BoxDecoration _buildBoxdecoration() {
+   final colo = Colores();
   return BoxDecoration(
-    color: Color.fromARGB(255, 4, 222, 12),
+    color:colo.primaryC ,
     borderRadius: BorderRadius.circular(10),
     boxShadow: [
       BoxShadow(

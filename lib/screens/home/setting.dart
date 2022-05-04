@@ -21,6 +21,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final colo = Colores();
     final user = Provider.of<Clientes?>(context);
     return SafeArea(
       child: Material(
@@ -30,9 +31,11 @@ class _SettingsState extends State<Settings> {
             ListView(
               children: [
                 StreamBuilder<UserData>(
+                  
                   //Provider.of<UserData>(context).uid
                   stream: DatabaseService(uid: user?.uid).userData,
                   builder: (context, snapshot) {
+                    
                     if (snapshot.hasData) {
                       UserData? userData = snapshot.data;
                       return Padding(
@@ -40,7 +43,7 @@ class _SettingsState extends State<Settings> {
                             top: 80, left: 20, right: 20, bottom: 170),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color.fromRGBO(62, 66, 107, 0.7),
+                              color: colo.secondaryC,
                               borderRadius: BorderRadius.circular(15)),
                           child: Form(
                             key: _formKey,
@@ -52,7 +55,7 @@ class _SettingsState extends State<Settings> {
                                 const Text(
                                   'Actualiza tu perfil',
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),

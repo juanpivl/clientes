@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pacientes/widgets/widgets.dart';
 
 class PageTitle extends StatelessWidget {
 
   final String text;
   final String title;
+  final colo = Colores();
 
-  const PageTitle({Key? key, required this.text, required this.title}) : super(key: key);
+  PageTitle({Key? key, required this.text, required this.title}) : super(key: key);
   
 
   @override
@@ -24,9 +26,9 @@ class PageTitle extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children:  [
           SizedBox( height: 30 ),
-          Text(title, style: TextStyle( fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white )),
+          Text(title, style: TextStyle( fontSize: 30, fontWeight: FontWeight.bold, color: colo.letrasTituC  )),
           SizedBox( height: 10 ),
-          Text(text, style: TextStyle( fontSize: 16, color: Colors.black )),
+          Text(text, style: TextStyle( fontSize: 16, color: colo.letrasSubC )),
         ],
       );
   }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pacientes/models/models.dart';
 import 'package:pacientes/screens/screen.dart';
 import 'package:pacientes/services/services.dart';
@@ -12,9 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -24,8 +22,7 @@ class _HomeState extends State<Home> {
             ListView(children: [
               PageTitle(title: 'Bienvenidos', text: 'Nutricion para todos'),
               SizedBox(height: 20.0),
-              CardContainer(child: _buildCheckboxListTile('today', true,),),
-              
+              dependeDia(),
               SizedBox(height: 20.0),
               CardContainer(
                 child: Image.network(
@@ -39,116 +36,46 @@ class _HomeState extends State<Home> {
     );
   }
 
-  CheckboxListTile _buildCheckboxListTile(String title, bool value,) {
+  CheckboxListTile _buildCheckboxListTile(
+    String title,
+    bool value,
+  ) {
     return CheckboxListTile(
       title: Text(title),
       value: value,
       onChanged: null,
     );
   }
-  
-
-  SingleChildScrollView _VerticalDietas() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          _SingleCard(
-            color: Colors.blueAccent,
-            icon: Icons.fastfood,
-            text: 'Lunes',
-            nav: 'perfil',
-          ),
-          _SingleCard(
-            color: Colors.purpleAccent,
-            icon: Icons.fastfood,
-            text: 'Martes',
-            nav: 'comida',
-          ),
-          _SingleCard(
-            color: Colors.pinkAccent,
-            icon: Icons.fastfood,
-            text: 'Miercoles',
-            nav: 'cena',
-          ),
-          _SingleCard(
-            color: Colors.greenAccent,
-            icon: Icons.fastfood,
-            text: 'Jueves',
-            nav: 'colacion',
-          ),
-           _SingleCard(
-            color: Colors.greenAccent,
-            icon: Icons.fastfood,
-            text: 'Viernes',
-            nav: 'colacion',
-          ),
-           _SingleCard(
-            color: Colors.greenAccent,
-            icon: Icons.fastfood,
-            text: 'Sabado',
-            nav: 'colacion',
-          ),
-           _SingleCard(
-            color: Colors.greenAccent,
-            icon: Icons.fastfood,
-            text: 'Domingo',
-            nav: 'colacion',
-          ),
-        ],
-      ),
-    );
-  }
 }
 
-class _SingleCard extends StatelessWidget {
-  final IconData icon;
-  final Color color;
-  final String text;
-  final String nav;
+class dependeDia extends StatefulWidget {
+  @override
+  State<dependeDia> createState() => _dependeDiaState();
+}
 
-  const _SingleCard(
-      {Key? key,
-      required this.icon,
-      required this.color,
-      required this.text,
-      required this.nav})
-      : super(key: key);
-
+class _dependeDiaState extends State<dependeDia> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15),
-      height: 150,
-      width: 200,
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(62, 66, 107, 0.7),
-          borderRadius: BorderRadius.circular(15)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pushReplacementNamed(context, nav);
-            },
-            child: CircleAvatar(
-              backgroundColor: color,
-              child: Icon(
-                icon,
-                size: 45,
-              ),
-              radius: 45,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            text,
-            style: TextStyle(color: color, fontSize: 18),
-          ),
-        ],
-      ),
-    );
+    DateTime date = DateTime.now();
+
+    if (date.weekday == 7) {
+      return SingleCard(dia: 'Domingo', nav: 'domingo');
+    } else {
+      if (date.weekday == 6) {
+        return SingleCard(dia: 'Sabado', nav: 'sabado');
+      } else if (date.weekday == 5) {
+        return SingleCard(dia: 'Viernes', nav: 'viernes');
+      } else if (date.weekday == 4) {
+        return SingleCard(dia: 'Jueves', nav: 'jueves');
+      } else if (date.weekday == 3) {
+        return SingleCard(dia: 'Miercoles', nav: 'miercoles');
+      } else if (date.weekday == 2) {
+        return SingleCard(dia: 'Martes', nav: 'martes');
+      } else if (date.weekday == 1) {
+        return SingleCard(dia: 'Lunes', nav: 'lunes');
+      } else {
+        return SingleCard(dia: 'Ni puta idea que dia es', nav: 'domingo');
+      }
+    }
   }
 }

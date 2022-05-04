@@ -38,7 +38,7 @@ class _body extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const PageTitle(text: '', title: 'Miercoles'),
+            PageTitle(text: '', title: 'Miercoles'),
             const SizedBox(height: 20.0),
             _cartaComida(tipo: 'Desayuno', description: 'Huevitos con jamon Huevitos Huevitos con jamon Huevitos conHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con ja jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jaHuevitos con jamon Huevitos con jacon jamon Huevitos con jamon Huevitos con jamon Huevitos con jamon Huevitos con jamon ',),
             SizedBox(height: 20),

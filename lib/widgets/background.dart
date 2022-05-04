@@ -2,26 +2,21 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class Background extends StatelessWidget {
+import 'package:pacientes/widgets/widgets.dart';
 
-  final boxDecoration = const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        stops: [0.2, 0.8],
-        colors: [
-          Color(0xff2E305F),
-          Color(0xff202333)
-        ]
-      )
-  );
+class Background extends StatelessWidget {
+  final Color = Colores();
+
+  // final boxDecoration = const BoxDecoration(
+  //     color: Color.threC
+  // );
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         // Purple Gradinet
-        Container(decoration: boxDecoration ),
+        Container(color: Color.threC, ),
 
         // green box
         Positioned(
@@ -36,6 +31,7 @@ class Background extends StatelessWidget {
 
 
 class _GreenBox extends StatelessWidget {
+  final color = Colores();
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
@@ -45,12 +41,8 @@ class _GreenBox extends StatelessWidget {
         height: 360,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(80),
-          gradient: const LinearGradient(
-            colors: [
-              Color.fromARGB(255, 41, 163, 68),
-              Color.fromARGB(255, 2, 253, 39),
-            ]
-          )
+          color: color.primaryC ,
+          
         ),
       ),
     );

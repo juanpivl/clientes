@@ -3,6 +3,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pacientes/screens/screen.dart';
 
+import '../widgets/widgets.dart';
+
 class MenuScreen extends StatefulWidget {
 
   @override
@@ -10,6 +12,7 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+  final colo = Colores();
   int pageindex = 0;
 
  final Home _home = Home();
@@ -51,9 +54,9 @@ class _MenuScreenState extends State<MenuScreen> {
             Icon(Icons.fastfood, size: 40),
             Icon(Icons.person, size: 40),
           ],
-          color: Colors.green,
-          backgroundColor:  const Color(0xff202333), 
-          buttonBackgroundColor: Colors.green,
+          color: colo.primaryC,
+          backgroundColor:  colo.secondaryC, 
+          buttonBackgroundColor: colo.primaryC,
           onTap: (int tappedIndex) {
             setState(() {
               _showPage = _pageChooser(tappedIndex);

@@ -1,27 +1,44 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:pacientes/widgets/widgets.dart';
 
 class  SingleCard extends StatelessWidget {
+  final colo = Colores();
   final String dia;
   final nav;
 
-  const SingleCard({Key? key, required this.dia, required this.nav}) : super(key: key);
+ SingleCard({Key? key, required this.dia, required this.nav}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       margin: const EdgeInsets.all(15),
       height: 150,
       width: double.infinity,
       decoration: BoxDecoration(
-          color: Color.fromRGBO(62, 66, 107, 0.7),
-          borderRadius: BorderRadius.circular(15)),
+        border: Border.all(
+          color: Colors.blue,
+          width: 3,
+        ),
+       
+        //TODO: cambiar a imagen
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/fondo.jpg'),
+            fit: BoxFit.cover,
+            opacity: .66,
+          ) ,
+          borderRadius: BorderRadius.circular(15)
+          
+          
+          ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(dia,
               style: TextStyle(
-                  color: Colors.white,
+                  color: colo.letrasC,
                   fontSize: 20,
                   fontWeight: FontWeight.bold)),
                   const SizedBox(
@@ -36,7 +53,7 @@ class  SingleCard extends StatelessWidget {
               margin: const EdgeInsets.only(right: 20),
               child: const Icon(
                 Icons.food_bank,
-                color: Colors.white,
+                color: Colors.black,
                 size: 60,
               ),
             ),

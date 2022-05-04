@@ -11,3 +11,5 @@ export 'package:pacientes/widgets/card_container.dart';
 
 export 'package:pacientes/widgets/singlecard.dart';
 
+export 'package:pacientes/widgets/colores.dart';
+

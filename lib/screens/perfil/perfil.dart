@@ -32,7 +32,7 @@ class _PerfilState extends State<Perfil> {
                         child: Container(
                           margin: const EdgeInsets.only(top: 30),
                           decoration: BoxDecoration(
-                              color: const Color.fromRGBO(62, 66, 107, 0.7),
+                              color: const Color(0xfff9e79f),
                               borderRadius: BorderRadius.circular(15)),
                           height: 600,
                           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -47,7 +47,7 @@ class _PerfilState extends State<Perfil> {
                                       child: IconButton(
                                         icon: const Icon(
                                             Icons.exit_to_app_outlined,
-                                            color: Colors.white),
+                                            color: Colors.black),
                                         onPressed: () {
                                           _auth.signOut();
                                         },
@@ -58,25 +58,25 @@ class _PerfilState extends State<Perfil> {
                                         right: 5,
                                         child: IconButton(
                                           onPressed: () {
-                                            Navigator.pushNamed(context, 'settings');
+                                            Navigator.pushNamed(
+                                                context, 'settings');
                                           },
                                           icon: const Icon(Icons.edit_outlined,
-                                              color: Colors.white),
+                                              color: Colors.black),
                                         )),
                                     Center(
                                       child: Container(
                                         child: const CircleAvatar(
                                           radius: 70,
                                           backgroundColor: Colors.transparent,
-                                          backgroundImage:
-                                              const AssetImage('assets/logo.png'),
+                                          backgroundImage: const AssetImage(
+                                              'assets/logo.png'),
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 _perfilBody(userData),
-    
                                 _Informacion(userData),
                               ]),
                         ),
@@ -111,13 +111,10 @@ class _PerfilState extends State<Perfil> {
               SizedBox(width: 5),
               DatosBubble(dato: 'Celular', text: '${userData?.celular}'),
               SizedBox(width: 5),
-               
             ],
           ),
         ));
   }
-
-  
 
   _Informacion(UserData? userData) {
     return Container(
@@ -128,5 +125,3 @@ class _PerfilState extends State<Perfil> {
     );
   }
 }
-
-

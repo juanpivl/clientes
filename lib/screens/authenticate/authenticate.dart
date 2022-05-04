@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pacientes/screens/screen.dart';
+import 'package:pacientes/widgets/widgets.dart';
 
 class Authenticate extends StatefulWidget {
 
@@ -17,7 +18,7 @@ class _AuthenticateState extends State<Authenticate> {
 
 class _tabcontroller extends StatelessWidget {
   
-
+final colo = Colores();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -27,14 +28,9 @@ class _tabcontroller extends StatelessWidget {
               appBar: AppBar(
                 flexibleSpace: Container(
                   
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                    colors: [Color.fromARGB(255, 5, 94, 17), Color.fromARGB(255, 77, 136, 11)],
-                    begin: FractionalOffset(0.0, 0.0),
-                    end: FractionalOffset(1.0, 0.0),
-                    stops: [0.0, 1.0],
-                    tileMode: TileMode.clamp,
-                  )),
+                  decoration: BoxDecoration(
+                      color: colo.primaryC,
+                  ),
                 ),
                 toolbarHeight: 120,
                 title: Column(
@@ -46,17 +42,17 @@ class _tabcontroller extends StatelessWidget {
 
                 ],),
                 
-                bottom: const TabBar(
+                bottom:  TabBar(
 
-                  indicatorColor: Colors.white,
+                  indicatorColor: colo.secondaryC,
                   tabs: [
-                    // ignore: unnecessary_const
-                    const Tab(
-                      icon: Icon(Icons.lock, color: Colors.white),
+                    
+                     Tab(
+                      icon: Icon(Icons.lock, color: Colors.black),
                       text: "Ingresar",
                     ),
                     Tab(
-                      icon: Icon(Icons.lock, color: Colors.white),
+                      icon: Icon(Icons.lock, color: Colors.black),
                       text: "Registrarse",
                     ),
                   ],
@@ -64,14 +60,10 @@ class _tabcontroller extends StatelessWidget {
                 ),
               ),
               body: Container(
-                // ignore: duplicate_ignore
-                decoration: const BoxDecoration(
-                    // ignore: unnecessary_const
-                    gradient: const LinearGradient(
-                  colors: [const Color.fromARGB(255, 5, 94, 17), const Color.fromARGB(255, 77, 136, 11)],
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                )),
+                
+                decoration: BoxDecoration(
+                    color: colo.primaryC
+                   ),
                 child: TabBarView(
                   children: [
                     SignIn(),

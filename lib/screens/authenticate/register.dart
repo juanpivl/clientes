@@ -31,7 +31,7 @@ class _RegisterState extends State<Register> {
             15.0,
           ),
           child: Text("Registra tu cuenta",
-              style: TextStyle(color: Colors.white, fontSize: 20)),
+              style: TextStyle(color: Colors.black, fontSize: 20)),
         ),
         Form(
           key: _formKey,

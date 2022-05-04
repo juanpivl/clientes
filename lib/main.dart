@@ -4,6 +4,7 @@ import 'package:pacientes/models/models.dart';
 import 'package:pacientes/screens/screen.dart';
 import 'package:pacientes/screens/wrapper.dart';
 import 'package:pacientes/services/services.dart';
+import 'package:pacientes/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -14,7 +15,9 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
 
-  // This widget is the root of your application.
+  final Color =Colores();
+
+  
   @override
   Widget build(BuildContext context) {
     return StreamProvider<Clientes?>.value(
@@ -24,8 +27,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          primaryColor: Color.secondaryC,
+          primarySwatch: Colors.amber
           
-          primarySwatch: Colors.green,
+        
         ),
         
         initialRoute: 'Wrapper',

@@ -16,6 +16,7 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   String error = '';
+  final colo = Colores();
 
 
   @override
@@ -30,7 +31,7 @@ class _SignInState extends State<SignIn> {
             15.0,
           ),
           child: Text("Ingresa tu cuenta",
-              style: TextStyle(color: Colors.white, fontSize: 20)),
+              style: TextStyle(color: Colors.black, fontSize: 20)),
         ),
         Form(
           key: _formKey,
@@ -124,9 +125,9 @@ class _SignInState extends State<SignIn> {
                ),
             const SizedBox(height: 30.0),
             Container(
-                height: 4.0, width: _screenWidth * 0.8, color: Colors.white),
+                height: 4.0, width: _screenWidth * 0.8, color: colo.secondaryC),
             const SizedBox(height: 10.0),
-            _anonimus(auth: _auth)
+            //_anonimus(auth: _auth)
           ]),
         ),
 
