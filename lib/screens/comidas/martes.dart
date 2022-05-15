@@ -1,74 +1,126 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pacientes/widgets/widgets.dart';
 
-class Martes extends StatefulWidget {
-  Martes({Key? key}) : super(key: key);
 
-  @override
-  State<Martes> createState() => _MartesState();
-}
+class Martes extends StatelessWidget {
+  final controller = TextEditingController();
 
-class _MartesState extends State<Martes> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Icon(Icons.arrow_back),
-        ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(Icons.arrow_back),
+          ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        // floatingActionButton:  FloatingActionButton(onPressed: () {
+        //     final tipo = controller.text;
+        //     final descripcion = controller.text;
+    
+        //     createDietaMartes(tipo: tipo, description: descripcion);
+        //   }),
         body: Stack(children: [
           Background(),
+          //TODO:Activar para crear dietas
+          // TextField(
+          //   controller: controller,
+          // ),
+          
+           PageTitle(title: 'Martes',text: ''),
           _body(),
+          
         ]),
       ),
     );
   }
-}
 
-class _body extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  _body() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PageTitle(text: '', title: 'Martes'),
-            const SizedBox(height: 20.0),
-            _cartaComida(tipo: 'Desayuno', description: 'Huevitos con jamon Huevitos con jamon Huevitos con jamon Huevitos con jamon Huevitos con jamon Huevitos con jamon ',),
-            SizedBox(height: 20),
-            _cartaComida(tipo: 'Comida', description: 'Huevitos con jamon '),
-            SizedBox(height: 20),
-            _cartaComida(tipo: 'Cena', description: 'Huevitos con jamon '),
-            SizedBox(height: 20),
-            _cartaComida(tipo: 'Colacion', description: 'Huevitos con jamon '),
-             SizedBox(height: 20),
-            
-            _cartaComida(tipo: 'Colacion 2', description: 'Huevitos con jamon '),
-            SizedBox(height: 20),
-            
-            _cartaComida(tipo: 'Colacion 3', description: 'Huevitos con jamon '),
-          ],
-        ),
-
-        ],
-       
-      ),
+      padding: const EdgeInsets.only(top: 70),
+      child: Container(
+        padding: EdgeInsets.all(20),
+            child: StreamBuilder<List<MartesDieta>?>(
+              stream: readMartesDieta(),
+              builder: (context, snapshot) {
+                if(snapshot.hasError){
+                    return Text('Error ${snapshot.error}' );
+                }else if(snapshot.hasData){
+                  final MartesDietas = snapshot.data!;
+                  return ListView(
+                    children: MartesDietas.map(buildMartes).toList(),
+                    
+                  );
+                }else {
+                  return Loading();
+                }
+                
+                
+              },
+            ),
+          ),
     );
+
   }
 }
+
+Widget buildMartes(MartesDieta MartesDieta) => Container(
+  padding: EdgeInsets.all(10),
+  child: _cartaComida(tipo: MartesDieta.tipo, description: MartesDieta.description),
+    );
+
+Stream<List<MartesDieta>> readMartesDieta() =>
+    FirebaseFirestore.instance.collection('Martes').snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => MartesDieta.fromJson(doc.data())).toList());
+
+Future createDietaMartes(
+    {required String tipo, required String description}) async {
+  final docUser = FirebaseFirestore.instance.collection('Martes').doc();
+
+  final Martesdieta = MartesDieta(
+    id: docUser.id,
+    tipo: tipo,
+    description: description,
+  );
+
+  final json = Martesdieta.toJson();
+  await docUser.set(json);
+}
+
+class MartesDieta {
+  String id;
+  String tipo;
+   String description;
+
+  MartesDieta({this.id = '', required this.tipo, required this.description});
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'tipo': tipo,
+        'description': description,
+      };
+
+  static MartesDieta fromJson(Map<String, dynamic> json) => MartesDieta(
+        id: json['id'],
+        tipo: json['tipo'],
+        description: json['description'],
+      );
+}
+
+////////////////
 
 class _cartaComida extends StatefulWidget {
   final String tipo;
   final String description;
 
   const _cartaComida({
-    Key? key, required this.tipo,required this.description,
+    Key? key,
+    required this.tipo,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -77,51 +129,38 @@ class _cartaComida extends StatefulWidget {
 
 class _cartaComidaState extends State<_cartaComida> {
   //TODO: Vincular is checking con base de datos
-  bool isChecking =  false;
+  bool isChecking = false;
   @override
   Widget build(BuildContext context) {
-    
     return Container(
-      width: 350,
-      height: MediaQuery.textScaleFactorOf(context) * 100,
+      width: 400,
+      height: MediaQuery.textScaleFactorOf(context) * 150,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
           boxShadow: const [
             BoxShadow(
-                color: Colors.black12,
-                blurRadius: 15,
-                offset: Offset(0, 0))
+                color: Colors.black12, blurRadius: 15, offset: Offset(0, 0))
           ]),
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    widget.tipo,
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Checkbox(value: isChecking, onChanged: (bool? value) {
-                    setState(() {
-                      isChecking = !isChecking;
-                    
-                    });
-                  })
-                ],
+              Text(
+                widget.tipo,
+                style: const TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.bold),
               ),
               
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text( widget.description),
-              )
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(widget.description),
+          )
         ],
       ),
     );
