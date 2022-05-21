@@ -3,6 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pacientes/screens/screen.dart';
 
+import '../services/services.dart';
 import '../widgets/widgets.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _MenuScreenState extends State<MenuScreen> {
  final Comidas _comidas = Comidas();
 
   Widget _showPage = Home();
+  final AuthService _auth = AuthService();
 
   Widget _pageChooser(int page) {
     switch (page) {
@@ -31,7 +33,7 @@ class _MenuScreenState extends State<MenuScreen> {
         
       case 2:
         return _perfil ;
-          
+       
       
          
       default:

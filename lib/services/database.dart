@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pacientes/models/models.dart';
-import 'package:pacientes/screens/comidas/lunes.dart';
 
 class DatabaseService {
   final String? uid;

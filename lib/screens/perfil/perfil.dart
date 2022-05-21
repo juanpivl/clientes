@@ -41,18 +41,7 @@ class _PerfilState extends State<Perfil> {
                               children: [
                                 Stack(
                                   children: [
-                                    Positioned(
-                                      top: 0,
-                                      left: 5,
-                                      child: IconButton(
-                                        icon: const Icon(
-                                            Icons.exit_to_app_outlined,
-                                            color: Colors.black),
-                                        onPressed: () {
-                                          _auth.signOut();
-                                        },
-                                      ),
-                                    ),
+                                   
                                     Positioned(
                                         top: 0,
                                         right: 5,
@@ -78,6 +67,24 @@ class _PerfilState extends State<Perfil> {
                                 ),
                                 _perfilBody(userData),
                                 _Informacion(userData),
+                                GestureDetector(
+                                  
+                                  onTap: () {
+                                    _auth.signOut();
+                                  },
+                                  child: Container(
+                                    child: Center(child: Text('Cerrar sesion',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
+                                    height: 50,
+                                    width: 400,
+                                    margin: EdgeInsets.only(
+                                        top: 140, left: 20, right: 20),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffD0ECE7),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                          
+                                  ),
+                                )
                               ]),
                         ),
                       ),
@@ -103,13 +110,33 @@ class _PerfilState extends State<Perfil> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              DatosBubble(dato: 'Peso', text: '${userData?.peso} kg'),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, 'settings');
+                },
+                child: DatosBubble(dato: 'Peso', text: '${userData?.peso} kg'),
+              ),
               SizedBox(width: 5),
-              DatosBubble(dato: 'Altura', text: '${userData?.Altura}M'),
+              GestureDetector(
+                child: DatosBubble(dato: 'Altura', text: '${userData?.Altura}M'),
+                onTap: (){
+                  Navigator.pushNamed(context, 'settings');
+                },
+              ),
               SizedBox(width: 5),
-              DatosBubble(dato: 'Edad', text: '${userData?.edad}'),
+              GestureDetector(
+                child: DatosBubble(dato: 'IMC', text: '${userData?.edad}'),
+                onTap: (){
+                  Navigator.pushNamed(context, 'settings');
+                },
+              ),
               SizedBox(width: 5),
-              DatosBubble(dato: 'Celular', text: '${userData?.celular}'),
+              GestureDetector(
+                child: DatosBubble(dato: 'Edad', text: '${userData?.celular}'),
+                onTap: (){
+                  Navigator.pushNamed(context, 'settings');
+                },
+              ),
               SizedBox(width: 5),
             ],
           ),

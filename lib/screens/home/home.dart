@@ -192,47 +192,119 @@ class _dependeDiaState extends State<dependeDia> {
     DateTime date = DateTime.now();
 
     if (date.weekday == 7) {
-      return SingleCard(
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Domingo(),
+            ),
+          );
+        },
+         child:  SingleCard(
         dia: 'Domingo',
         nav: 'domingo',
         foto: 'assets/fondo.jpg',
-      );
+      ),
+      ); 
+      
     } else {
       if (date.weekday == 6) {
-        return SingleCard(
-          dia: 'Sabado',
-          nav: 'sabado',
-          foto: 'assets/fondo.1.jpg',
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Sabado(),
+              ),
+            );
+          },
+          child: SingleCard(
+            dia: 'Sabado',
+            nav: 'sabado',
+            foto: 'assets/fondo.jpg',
+          ),
         );
+        
       } else if (date.weekday == 5) {
-        return SingleCard(
-          dia: 'Viernes',
-          nav: 'viernes',
-          foto: 'assets/fondo.2.jpg',
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Viernes(),
+              ),
+            );
+          },
+          child: SingleCard(
+            dia: 'Viernes',
+            nav: 'viernes',
+            foto: 'assets/fondo.jpg',
+          ),
         );
       } else if (date.weekday == 4) {
-        return SingleCard(
-          dia: 'Jueves',
-          nav: 'jueves',
-          foto: 'assets/fondo.3.jpg',
-        );
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Jueves(),
+              ),
+            );
+          },
+          child: SingleCard(
+            dia: 'Jueves',
+            nav: 'jueves',
+            foto: 'assets/fondo.jpg',
+          ),
+        );  
       } else if (date.weekday == 3) {
-        return SingleCard(
-          dia: 'Miercoles',
-          nav: 'miercoles',
-          foto: 'assets/fondo.4.jpg',
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Miercoles(),
+              ),
+            );
+          },
+          child: SingleCard(
+            dia: 'Miercoles',
+            nav: 'miercoles',
+            foto: 'assets/fondo.jpg',
+          ),
         );
       } else if (date.weekday == 2) {
-        return SingleCard(
-          dia: 'Martes',
-          nav: 'martes',
-          foto: 'assets/fondo.5.jpg',
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Martes(),
+              ),
+            );
+          },
+          child: SingleCard(
+            dia: 'Martes',
+            nav: 'martes',
+            foto: 'assets/fondo.jpg',
+          ),
         );
       } else if (date.weekday == 1) {
-        return SingleCard(
-          dia: 'Martes',
-          nav: 'Martes',
-          foto: 'assets/fondo.6.jpg',
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Lunes(),
+              ),
+            );
+          },
+          child: SingleCard(
+            dia: 'Lunes',
+            nav: 'lunes',
+            foto: 'assets/fondo.jpg',
+          ),
         );
       } else {
         return SingleCard(
