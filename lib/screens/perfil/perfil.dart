@@ -41,7 +41,6 @@ class _PerfilState extends State<Perfil> {
                               children: [
                                 Stack(
                                   children: [
-                                   
                                     Positioned(
                                         top: 0,
                                         right: 5,
@@ -68,21 +67,25 @@ class _PerfilState extends State<Perfil> {
                                 _perfilBody(userData),
                                 _Informacion(userData),
                                 GestureDetector(
-                                  
                                   onTap: () {
                                     _auth.signOut();
                                   },
                                   child: Container(
-                                    child: Center(child: Text('Cerrar sesion',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
+                                    child: Center(
+                                        child: Text(
+                                      'Cerrar sesion',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    )),
                                     height: 50,
                                     width: 400,
                                     margin: EdgeInsets.only(
-                                        top: 140, left: 20, right: 20),
+                                        top: 120, left: 20, right: 20),
                                     decoration: BoxDecoration(
                                         color: Color(0xffD0ECE7),
                                         borderRadius:
                                             BorderRadius.circular(15)),
-                                          
                                   ),
                                 )
                               ]),
@@ -118,22 +121,23 @@ class _PerfilState extends State<Perfil> {
               ),
               SizedBox(width: 5),
               GestureDetector(
-                child: DatosBubble(dato: 'Altura', text: '${userData?.Altura}M'),
-                onTap: (){
+                child:
+                    DatosBubble(dato: 'Altura', text: '${userData?.Altura}M'),
+                onTap: () {
                   Navigator.pushNamed(context, 'settings');
                 },
               ),
               SizedBox(width: 5),
               GestureDetector(
                 child: DatosBubble(dato: 'IMC', text: '${userData?.edad}'),
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, 'settings');
                 },
               ),
               SizedBox(width: 5),
               GestureDetector(
                 child: DatosBubble(dato: 'Edad', text: '${userData?.celular}'),
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, 'settings');
                 },
               ),
@@ -145,10 +149,14 @@ class _PerfilState extends State<Perfil> {
 
   _Informacion(UserData? userData) {
     return Container(
-      child: PageTitle(
-        title: '${userData?.name}',
-        text: 'Prox. cita: ${userData?.cita}',
-      ),
-    );
+        child: Column(
+      children: [
+        PageTitle(
+          title: '${userData?.name}',
+          text: 'Proxima cita: ',
+        ),
+        Text('${userData?.cita}')
+      ],
+    ));
   }
 }
