@@ -83,7 +83,6 @@ Future createDietaLunes(
   final docUser = FirebaseFirestore.instance.collection('lunes').doc();
 
   final lunesdieta = LunesDieta(
-    id: docUser.id,
     tipo: tipo,
     description: description,
   );
