@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pacientes/widgets/widgets.dart';
 
-
 class Lunes extends StatelessWidget {
   final controller = TextEditingController();
 
@@ -10,18 +9,17 @@ class Lunes extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(Icons.arrow_back),
-          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(Icons.arrow_back),
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         // floatingActionButton:  FloatingActionButton(onPressed: () {
         //     final tipo = controller.text;
         //     final descripcion = controller.text;
-    
+
         //     createDietaLunes(tipo: tipo, description: descripcion);
         //   }),
         body: Stack(children: [
@@ -30,11 +28,10 @@ class Lunes extends StatelessWidget {
           // TextField(
           //   controller: controller,
           // ),
-          
-          PageTitle(title: 'Lunes',text: ''),
-          
+
+          PageTitle(title: 'Lunes', text: ''),
+
           _body(),
-          
         ]),
       ),
     );
@@ -45,34 +42,31 @@ class Lunes extends StatelessWidget {
       padding: const EdgeInsets.only(top: 70),
       child: Container(
         padding: EdgeInsets.all(20),
-            child: StreamBuilder<List<LunesDieta>?>(
-              stream: readLunesDieta(),
-              builder: (context, snapshot) {
-                if(snapshot.hasError){
-                    return Text('Error ${snapshot.error}' );
-                }else if(snapshot.hasData){
-                  final lunesDietas = snapshot.data!;
-                  return ListView(
-                    children: lunesDietas.map(buildLunes).toList(),
-                    
-                  );
-                }else {
-                  return Loading();
-                }
-                
-                
-              },
-            ),
-          ),
+        child: StreamBuilder<List<LunesDieta>?>(
+          stream: readLunesDieta(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Error ${snapshot.error}');
+            } else if (snapshot.hasData) {
+              final lunesDietas = snapshot.data!;
+              return ListView(
+                children: lunesDietas.map(buildLunes).toList(),
+              );
+            } else {
+              return Loading();
+            }
+          },
+        ),
+      ),
     );
-
   }
 }
 
 Widget buildLunes(LunesDieta lunesDieta) => Container(
-  padding: EdgeInsets.all(10),
-  child: _cartaComida(tipo: lunesDieta.tipo, description: lunesDieta.description),
-    );
+      padding: EdgeInsets.all(10),
+      child: _cartaComida(
+          tipo: lunesDieta.tipo, description: lunesDieta.description),
+);
 
 Stream<List<LunesDieta>> readLunesDieta() =>
     FirebaseFirestore.instance.collection('lunes').snapshots().map((snapshot) =>
@@ -91,10 +85,14 @@ Future createDietaLunes(
   await docUser.set(json);
 }
 
+
+
+
+
 class LunesDieta {
   String id;
   String tipo;
-   String description;
+  String description;
 
   LunesDieta({this.id = '', required this.tipo, required this.description});
 
@@ -128,8 +126,10 @@ class _cartaComida extends StatefulWidget {
 }
 
 class _cartaComidaState extends State<_cartaComida> {
+
+
   //TODO: Vincular is checking con base de datos
-  bool isChecking = false;
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -143,20 +143,25 @@ class _cartaComidaState extends State<_cartaComida> {
                 color: Colors.black12, blurRadius: 15, offset: Offset(0, 0))
           ]),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                widget.tipo,
-                style: const TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold),
+         
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  
+                  Text(
+                    widget.tipo,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    width: 100
+                  ),
+                  
+                ],
               ),
-              
-            ],
-          ),
+           
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(widget.description),

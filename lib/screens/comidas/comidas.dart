@@ -32,7 +32,7 @@ class _ComidasState extends State<Comidas> {
                 child: SingleCard(
                   dia: 'Lunes',
                   nav: 'lunes',
-                  foto: 'assets/fondo.jpg',
+                  foto: 'assets/fondo.1.jpg',
                 ),
               ),
               GestureDetector(
@@ -42,7 +42,7 @@ class _ComidasState extends State<Comidas> {
                 child: SingleCard(
                   dia: 'Martes',
                   nav: 'martes',
-                  foto: 'assets/fondo.jpg',
+                  foto: 'assets/fondo.2.jpg',
                 ),
               ),
               GestureDetector(
@@ -52,7 +52,7 @@ class _ComidasState extends State<Comidas> {
                 child: SingleCard(
                   dia: 'Miercoles',
                   nav: 'miercoles',
-                  foto: 'assets/fondo.jpg',
+                  foto: 'assets/fondo.3.jpg',
                 ),
               ),
               GestureDetector(
@@ -62,7 +62,7 @@ class _ComidasState extends State<Comidas> {
                 child: SingleCard(
                   dia: 'Jueves',
                   nav: 'jueves',
-                  foto: 'assets/fondo.jpg',
+                  foto: 'assets/fondo.4.jpg',
                 ),
               ),
               GestureDetector(
@@ -72,7 +72,7 @@ class _ComidasState extends State<Comidas> {
                 child: SingleCard(
                   dia: 'Viernes',
                   nav: 'viernes',
-                  foto: 'assets/fondo.jpg',
+                  foto: 'assets/fondo.5.jpg',
                 ),
               ),
               GestureDetector(
@@ -82,7 +82,7 @@ class _ComidasState extends State<Comidas> {
                 child: SingleCard(
                   dia: 'Sabado',
                   nav: 'sabado',
-                  foto: 'assets/fondo.jpg',
+                  foto: 'assets/fondo.6.jpg',
                 ),
               ),
               GestureDetector(

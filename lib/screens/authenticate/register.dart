@@ -17,6 +17,8 @@ class _RegisterState extends State<Register> {
   String password = '';
   String password2 = '';
   String error = '';
+  bool checkboxValue = false;
+  bool checkboxValue2 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -132,22 +134,42 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        politicas(context),
+                        Checkbox(
+                            value: checkboxValue,
+                            onChanged: (val) {
+                              setState(() {
+                                checkboxValue = val!;
+                              });
+                            }),
+                      ],
+                    ),
                     const SizedBox(height: 30.0),
                     ElevatedButton(
                       child: Text('Registrar'),
                       onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          setState(() {
-                            loading = true;
-                          });
-                          dynamic result =
-                              await _auth.registerWithEmail(email, password);
-                          if (result == null) {
+                        if (checkboxValue == true) {
+                          if (_formKey.currentState!.validate()) {
                             setState(() {
-                              error = 'Ingresar un email valido';
-                              loading = false;
+                              loading = true;
                             });
+                            dynamic result =
+                                await _auth.registerWithEmail(email, password);
+                            if (result == null) {
+                              setState(() {
+                                error = 'Ingresar un email valido';
+                                loading = false;
+                              });
+                            }
                           }
+                        }
+                        if (checkboxValue == null) {
+                          setState(() {
+                            error = 'Acepte los terminos y condiciones';
+                          });
                         }
                       },
                     ),
@@ -162,5 +184,31 @@ class _RegisterState extends State<Register> {
               ))
             ]),
           ));
+  }
+
+  TextButton politicas(BuildContext context) {
+    return TextButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Políticas de privacidad'),
+                  content: SingleChildScrollView(
+                      child: RichText(
+                    text: TextSpan(
+                      text:
+                          'Política de privacidad de Nutrici Para recibir la información sobre sus Datos Personales, la finalidad y las partes con las que se'
+                          'comparte, contacten con el Titular.',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  )),
+                );
+              });
+        },
+        child: Text('Politicas de privacidad'));
   }
 }

@@ -143,20 +143,25 @@ class _cartaComidaState extends State<_cartaComida> {
                 color: Colors.black12, blurRadius: 15, offset: Offset(0, 0))
           ]),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                widget.tipo,
-                style: const TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold),
+         
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  
+                  Text(
+                    widget.tipo,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    width: 100
+                  ),
+                  
+                ],
               ),
-              
-            ],
-          ),
+           
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(widget.description),

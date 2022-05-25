@@ -71,7 +71,7 @@ class _PerfilState extends State<Perfil> {
                                     _auth.signOut();
                                   },
                                   child: Container(
-                                    child: Center(
+                                    child: const Center(
                                         child: Text(
                                       'Cerrar sesion',
                                       style: TextStyle(
@@ -81,7 +81,7 @@ class _PerfilState extends State<Perfil> {
                                     height: 50,
                                     width: 400,
                                     margin: EdgeInsets.only(
-                                        top: 120, left: 20, right: 20),
+                                        top: 90, left: 20, right: 20),
                                     decoration: BoxDecoration(
                                         color: Color(0xffD0ECE7),
                                         borderRadius:
@@ -129,14 +129,41 @@ class _PerfilState extends State<Perfil> {
               ),
               SizedBox(width: 5),
               GestureDetector(
-                child: DatosBubble(dato: 'IMC', text: '${userData?.edad}'),
+                child: DatosBubble(dato: 'Edad', text: '${userData?.edad}'),
                 onTap: () {
                   Navigator.pushNamed(context, 'settings');
                 },
               ),
               SizedBox(width: 5),
               GestureDetector(
-                child: DatosBubble(dato: 'Edad', text: '${userData?.celular}'),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          margin: EdgeInsets.only(top: 10, left: 10),
+                          width: 120,
+                          height: 100,
+                          decoration: _buildBoxdecoration(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Celular',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Text(
+                                '${userData?.celular}',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                            ],
+                          )),
+                    ]),
                 onTap: () {
                   Navigator.pushNamed(context, 'settings');
                 },
@@ -145,6 +172,21 @@ class _PerfilState extends State<Perfil> {
             ],
           ),
         ));
+  }
+
+  BoxDecoration _buildBoxdecoration() {
+    final colo = Colores();
+    return BoxDecoration(
+      color: colo.primaryC,
+      borderRadius: BorderRadius.circular(10),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black12,
+          blurRadius: 10,
+          offset: Offset(0, 10),
+        ),
+      ],
+    );
   }
 
   _Informacion(UserData? userData) {
